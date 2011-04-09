@@ -1,0 +1,11 @@
+CHANGELOG.rdoc
+Gemfile
+MIT-LICENSE
+README.md
+Rakefile
+init.rb
+lib/acts_more_seo.rb
+lib/string_ext.rb
+spec/acts_more_seo_spec.rb
+spec/spec_helper.rb
+Manifest
