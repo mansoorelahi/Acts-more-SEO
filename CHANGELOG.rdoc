@@ -4,3 +4,7 @@
 * Changed API (backward compatibility included)
 * Much better use (without an id in url)
 * Way cooler ;)
+= Version 0.2.2
+* Not raising no table error
+= Version 0.2.3
+* Major bug fixes, API changes

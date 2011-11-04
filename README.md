@@ -53,9 +53,9 @@ However, if you do so - it is highly recommended to create string seo_url column
 
     add_column :model, :seo_url, :string
 
-so you can search via find_by_seo_url method:
+so you can search via seo method:
 
-    CoolElement.find_by_seo_url(params[:id])
+    CoolElement.find_by_seo(params[:id])
 
 You don't need to update seo_url, gem will hook up with this field automatically if it exists.
 
