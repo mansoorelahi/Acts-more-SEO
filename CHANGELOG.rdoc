@@ -1,2 +1,6 @@
 = Version 0.1.0
 * Gem existence started
+= Version 0.2.0
+* Changed API (backward compatibility included)
+* Much better use (without an id in url)
+* Way cooler ;)

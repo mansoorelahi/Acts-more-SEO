@@ -21,5 +21,24 @@ ActiveRecord::Schema.define do
     create_table :cooler_elements do |table|
       table.string :title
     end
+
+    create_table :special_elements do |table|
+      table.string :title
+      table.string :name
+      table.string :surname
+    end
+
+    create_table :better_elements do |table|
+      table.string :title
+      table.string :name
+      table.string :surname
+    end
+
+    create_table :best_elements do |table|
+      table.string :title
+      table.string :name
+      table.string :surname
+      table.string :seo_url
+    end
 end
 
