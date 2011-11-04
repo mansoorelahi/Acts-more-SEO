@@ -55,6 +55,10 @@ module Acts
         seo_path = "#{self.id}#{"-#{seo_path}" if seo_path && seo_path.length > 0}"
         seo_path.length > 0 ? seo_path : "#{self.id}"
       end
+      # Alias
+      def url
+        to_url
+      end
 
       def to_seo
         if self.seo_use_id

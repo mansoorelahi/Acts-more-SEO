@@ -8,3 +8,5 @@
 * Not raising no table error
 = Version 0.2.3
 * Major bug fixes, API changes
+= Version 0.2.4
+Backward compatibility improvements
