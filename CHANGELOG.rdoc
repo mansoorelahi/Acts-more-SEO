@@ -10,3 +10,5 @@
 * Major bug fixes, API changes
 = Version 0.2.4
 Backward compatibility improvements
+= Version 0.2.5
+* Using ID when to_url returns same string as existing (conflicts)

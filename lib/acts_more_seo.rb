@@ -64,7 +64,12 @@ module Acts
         if self.seo_use_id
           to_url
         else
-          seo_text_part.length > 0 ? seo_text_part : "#{self.id}"
+          seo_link = seo_text_part.length > 0 ? seo_text_part : "#{self.id}"
+          if !self.class.where("seo_url = ? AND id != ?", seo_link, self.id).limit(1).empty?
+            to_url
+          else
+            seo_link
+          end
         end
       end
 

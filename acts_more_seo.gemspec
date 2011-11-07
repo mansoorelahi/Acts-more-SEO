@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{acts_more_seo}
-  s.version = "0.2.4"
+  s.version = "0.2.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 1.2") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Maciej Mensfeld}]
-  s.date = %q{2011-11-04}
+  s.date = %q{2011-11-07}
   s.description = %q{Gem makes your ActiveRecord models more SEO friendly. Changes URL to look way better}
   s.email = %q{maciej@mensfeld.pl}
   s.extra_rdoc_files = [%q{CHANGELOG.rdoc}, %q{README.md}, %q{lib/acts_more_seo.rb}, %q{lib/string_ext.rb}]
