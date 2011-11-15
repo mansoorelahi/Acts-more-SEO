@@ -91,13 +91,19 @@ module Acts
           self.column_names.include?("#{:seo_url}")
         end
 
-        def find_by_seo(id)
+        def find_by_seo!(id)
           if self.seo_use_id
             find(id)
           else
-            el = find_by_seo_url id, :first
-            raise ActiveRecord::RecordNotFound unless el
-            el
+            find_by_seo_url! id, :first
+          end
+        end
+
+        def find_by_seo(id)
+          if self.seo_use_id
+            find_by_id(id)
+          else
+            find_by_seo_url id, :first
           end
         end
 

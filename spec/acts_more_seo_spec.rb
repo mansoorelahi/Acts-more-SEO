@@ -29,7 +29,8 @@ describe CoolElement do
       subject.find_by_seo(a.id).should eql(a)
       subject.find_by_seo(a.to_param).should eql(a)
       subject.find_by_seo("#{a.to_param}aaa").should eql(a)
-      lambda { subject.find_by_seo("134534dass") }.should raise_error(ActiveRecord::RecordNotFound)
+      subject.find_by_seo("134534dass").should eql(nil)
+      lambda { subject.find_by_seo!("134534dass") }.should raise_error(ActiveRecord::RecordNotFound)
     end
   end
 
@@ -72,7 +73,7 @@ describe CoolerElement do
 
     it "should raise error when there is no element" do
       a = subject.create
-     lambda { subject.find_by_seo(a.id+1) }.should raise_error(ActiveRecord::RecordNotFound)
+     lambda { subject.find_by_seo!(a.id+1) }.should raise_error(ActiveRecord::RecordNotFound)
     end
   end
 
@@ -80,7 +81,7 @@ describe CoolerElement do
     it "should return nice url" do
       a = subject.create(:title => 'bla bla bla')
       a.to_param.should eql("#{a.id}-bla-bla-bla")
-      subject.find_by_seo(a.to_param).should eql(a)
+      subject.find_by_seo!(a.to_param).should eql(a)
     end
 
     context "and there are some url-not-friendly letters" do
@@ -167,8 +168,8 @@ describe BestElement do
   context "when we have a class which has use_id => false" do
     it "should find element only when seo_url is same (or by id)" do
       a = subject.create(:name => 'bla bla bla')
-      subject.find_by_seo(a.seo_url).should eql(a)
-      lambda { subject.find_by_seo("#{a.to_param}aaa") }.should raise_error(ActiveRecord::RecordNotFound)
+      subject.find_by_seo!(a.seo_url).should eql(a)
+      lambda { subject.find_by_seo!("#{a.to_param}aaa") }.should raise_error(ActiveRecord::RecordNotFound)
     end
   end
 
