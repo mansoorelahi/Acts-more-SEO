@@ -51,6 +51,8 @@ describe CoolElement do
       it "should remove them and return nice url" do
         a = subject.create(:name => 'ą')
         a.to_param.should eql("#{a.id}-a")
+        a = subject.create(:name => 'Danzō')
+        a.to_param.should eql("#{a.id}-danzo")
       end
     end
   end

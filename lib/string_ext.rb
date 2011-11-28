@@ -5,22 +5,7 @@
 class String
   # Removes any "not url friendly" stuff and returns "pure" url
   def to_url
-    temp = self.downcase
-    temp
-    temp.gsub!(/[âäàãáäå�?ăąǎǟǡǻ�?ȃȧẵặ]/,'a')
-    temp.gsub!(/[ëêéèẽēĕėẻȅȇẹȩęḙḛ�?ếễểḕḗệ�?]/,'e')
-    temp.gsub!(/[�?iìíîĩīĭïỉ�?ịįȉȋḭɨḯ]/,'i')
-    temp.gsub!(/[òóôõ�?�?ȯö�?őǒ�?�?ơǫ�?ɵøồốỗổȱȫȭ�?�?ṑṓ�?ớỡởợǭộǿ]/,'o')
-    temp.gsub!(/[ùúûũūŭüủůűǔȕȗưụṳųṷṵṹṻǖǜǘǖǚừứữửự]/,'u')
-    temp.gsub!(/[ỳýŷỹȳ�?ÿỷẙƴỵ]/,'y')
-    temp.gsub!(/[ñǹń]/,'n')
-    temp.gsub!(/[çć]/,'c')
-    temp.gsub!(/[ß]/,'ss')
-    temp.gsub!(/[œ]/,'oe')
-    temp.gsub!(/[ĳ]/,'ij')
-    temp.gsub!(/[�?ł]/,'l')
-    temp.gsub!(/[ś]/,'s')
-    temp.gsub!(/[źż]/,'z')
+    temp = self.downcase.to_slug.transliterate.to_s
     temp.gsub!(/[^a-zA-Z 0-9]/, "")
     temp.gsub!(/\s/,'-')
     temp.gsub!(/\-+$/,'')

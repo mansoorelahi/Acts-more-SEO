@@ -1,3 +1,4 @@
+require "babosa"
 require "string_ext"
 
 module Acts

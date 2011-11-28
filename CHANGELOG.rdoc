@@ -14,3 +14,5 @@ Backward compatibility improvements
 * Using ID when to_url returns same string as existing (conflicts)
 = Version 0.2.6
 * find_by_seo and find_by_seo! (with raising not found exception)
+= Version 0.3.0
+* Using babosa to remove non-ascii signs
