@@ -16,3 +16,5 @@ Backward compatibility improvements
 * find_by_seo and find_by_seo! (with raising not found exception)
 = Version 0.3.0
 * Using babosa to remove non-ascii signs
+= Version 0.3.1
+* Dependencies fix
