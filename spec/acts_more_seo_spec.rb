@@ -23,6 +23,13 @@ describe CoolElement do
   subject { CoolElement }
   before(:each){ subject.destroy_all }
 
+  context "when we have polish letters" do
+    it "should turn them into global and use downcase" do
+      a = subject.create(:name => 'Kraj Żelaza')
+      a.name.to_url.should == 'kraj-zelaza'
+    end
+  end
+
   context "when we have a class which has use_id => true" do
     it "should find element unless id is corrupted" do
       a = subject.create(:name => 'bla bla bla')

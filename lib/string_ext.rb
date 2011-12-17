@@ -5,7 +5,7 @@
 class String
   # Removes any "not url friendly" stuff and returns "pure" url
   def to_url
-    temp = self.downcase.to_slug.transliterate.to_s
+    temp = self.to_slug.transliterate.to_s.downcase
     temp.gsub!(/[^a-zA-Z 0-9]/, "")
     temp.gsub!(/\s/,'-')
     temp.gsub!(/\-+$/,'')
