@@ -20,3 +20,5 @@ Backward compatibility improvements
 * Dependencies fix
 = Version 0.3.2
 * Downcase fix
+= Version 0.4.0
+* Seo url history support for updating and searching

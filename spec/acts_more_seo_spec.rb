@@ -19,6 +19,10 @@ class BestElement < ActiveRecord::Base
     acts_more_seo :columns => [:name, :surname, :title], :use_id => false
 end
 
+class HistorableElement < ActiveRecord::Base
+    acts_more_seo :columns => :name, :use_id => false, :history => true
+end
+
 describe CoolElement do
   subject { CoolElement }
   before(:each){ subject.destroy_all }
@@ -130,7 +134,6 @@ describe SpecialElement do
   end
 end
 
-
 describe BestElement do
   subject { BestElement }
   before(:each){ subject.destroy_all }
@@ -225,6 +228,49 @@ describe BestElement do
         b.seo_url.should eql("mensfeld3-test-abc")
       end
     end
+  end
+
+end
+
+describe HistorableElement do
+  subject { HistorableElement }
+  before(:each){ subject.destroy_all }
+
+  context "when we have polish letters" do
+    it "should turn them into global and use downcase" do
+      a = subject.create(:name => 'Kraj Żelaza')
+      a.name.to_url.should == 'kraj-zelaza'
+    end
+  end
+
+  context "when there is no name" do
+    it "should return only id" do
+      a = subject.create
+      a.to_param.should eql(a.id.to_s)
+    end
+  end
+
+  context "when we change element name" do
+    it "should be able to find it via old one also" do
+      a = subject.create(:name => 'Kraj Żelaza')
+      a.name.to_url.should == 'kraj-zelaza'
+
+      a.update_attributes(:name => 'Kraj Złota')
+      a.reload
+      subject.find_by_seo('kraj-zelaza').should eql a
+      subject.find_by_seo('kraj-zlota').should eql a
+      subject.find_by_seo('kraj-a').should eql nil
+    end
+
+    context "and the new seo_url looks the same as old one" do
+      it "should not remember it in history" do
+        nr = Acts::MoreSeo::SeoHistory.count
+        a = subject.create(:name => 'Kraj Żelaza')
+        a.update_attributes(:name => 'Kraj Żelaza')
+        nr.should eql Acts::MoreSeo::SeoHistory.count
+      end
+    end
+
   end
 
 end

@@ -40,5 +40,15 @@ ActiveRecord::Schema.define do
       table.string :surname
       table.string :seo_url
     end
-end
 
+    create_table :historable_elements do |table|
+      table.string :name
+      table.string :seo_url
+    end
+
+    create_table :seo_histories do |table|
+      table.integer :seo_historable_id
+      table.string  :seo_historable_type
+      table.string  :seo_url
+    end
+end

@@ -5,7 +5,7 @@
     gem install acts_more_seo
 
 and in your Gemfile:
-    
+
     gem 'acts_more_seo'
 
 ## About
@@ -36,7 +36,7 @@ You can also pass an array of columns like this
           })
     cool_element_path(mod) ===> cool_elements/12345-maciej-mensfeld-cool-stuff
 
-Further more - if you don't want to use na ID in your urls, just set use_id param to false
+Further more - if you don't want to use an ID in your urls, just set use_id param to false
 
     class CoolElement < ActiveRecord::Base
         acts_more_seo :columns => [:name, :surname, :title], :use_id => false
@@ -45,7 +45,7 @@ Further more - if you don't want to use na ID in your urls, just set use_id para
     mod = CoolElement.create({
             :name => 'Maciej',
             :surname => 'Mensfeld',
-            :title => 'cool stuuf :)'
+            :title => 'cool stuff :)'
           })
     cool_element_path(mod) ===> cool_elements/maciej-mensfeld-cool-stuff
 
@@ -59,8 +59,20 @@ so you can search via seo method:
 
 You don't need to update seo_url, gem will hook up with this field automatically if it exists.
 
+If you want to maintain your urls history, run:
+
+    rails generate acts_more_seo:install
+
+In order to create a SeoHistory table which will contain your urls history. History will be searchable (you don't need to do anything), just inform acts_more_seo that you want to use history:
+
+    class HisElement < ActiveRecord::Base
+        acts_more_seo :column => :name, :use_id => false, :history => true
+    end
+
+After that, you can use find_by_seo and it will search also though the urls history.
+
 ## Note on Patches/Pull Requests
- 
+
 * Fork the project.
 * Make your feature addition or bug fix.
 * Add tests for it. This is important so I don't break it in a future version unintentionally.
