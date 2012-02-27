@@ -20,7 +20,10 @@ class BestElement < ActiveRecord::Base
 end
 
 class HistorableElement < ActiveRecord::Base
-    acts_more_seo :columns => :name, :use_id => false, :history => true
+    acts_more_seo :columns => :name, 
+      :use_id => false, 
+      :history => true,
+      :case_sensitive => true
 end
 
 describe CoolElement do
@@ -178,9 +181,10 @@ describe BestElement do
   end
 
   context "when we have a class which has use_id => false" do
-    it "should find element only when seo_url is same (or by id)" do
+    it "should find element only when seo_url is same (or by id) case insensitive" do
       a = subject.create(:name => 'bla bla bla')
       subject.find_by_seo!(a.seo_url).should eql(a)
+      subject.find_by_seo!('Bla-bLa-blA').should eql(a)
       lambda { subject.find_by_seo!("#{a.to_param}aaa") }.should raise_error(ActiveRecord::RecordNotFound)
     end
   end
@@ -270,7 +274,15 @@ describe HistorableElement do
         nr.should eql Acts::MoreSeo::SeoHistory.count
       end
     end
+  end
 
+  context "when searching for a case sensitive element" do
+    it "shoudl find only if case is same" do
+      a = subject.create(:name => 'Kraj Żelaza')
+      subject.find_by_seo('kraj-zelaza').should eql a
+      lambda { subject.find_by_seo!('kraj-zelazA') }.should raise_error(ActiveRecord::RecordNotFound)    
+    end
   end
 
 end
+

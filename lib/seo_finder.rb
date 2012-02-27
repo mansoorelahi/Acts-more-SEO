@@ -9,6 +9,7 @@ module Acts
       end
 
       def search(name)
+        name = name.downcase if !@klass.case_sensitive && name.is_a?(String)
         ret = search_in_table(name)
 
         if !ret && @klass.seo_history?
@@ -19,6 +20,7 @@ module Acts
       end
 
       def search!(name)
+        name = name.downcase if !@klass.case_sensitive && name.is_a?(String)
         search_in_table!(name)
       rescue ActiveRecord::RecordNotFound => e
         if @klass.seo_history?

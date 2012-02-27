@@ -20,6 +20,7 @@ module Acts
         columns = params[:column] || params[:columns] || :name
         use_id  = !params[:use_id].nil? ? params[:use_id] : true
         history = params[:history] || false
+        case_sensitive = params[:case_sensitive] || false
 
         if columns.is_a?(Array)
           columns.collect!{|a| a.to_sym}
@@ -30,6 +31,7 @@ module Acts
         cattr_accessor :seo_columns
         cattr_accessor :seo_use_id
         cattr_accessor :seo_history
+        cattr_accessor :case_sensitive
 
         before_update :update_seo_url
         after_create  :set_seo_url
@@ -37,6 +39,7 @@ module Acts
         self.seo_columns = columns
         self.seo_history = history
         self.seo_use_id  = use_id
+        self.case_sensitive = case_sensitive
 
         if self.seo_history
           has_many :seo_histories,

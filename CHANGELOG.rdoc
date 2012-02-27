@@ -22,3 +22,5 @@ Backward compatibility improvements
 * Downcase fix
 = Version 0.4.0
 * Seo url history support for updating and searching
+= Version 0.4.1
+* Case sensitive/insensitive support
