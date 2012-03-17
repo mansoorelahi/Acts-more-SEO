@@ -24,3 +24,5 @@ Backward compatibility improvements
 * Seo url history support for updating and searching
 = Version 0.4.1
 * Case sensitive/insensitive support
+= Version 0.4.2
+* Multiply pauses fix

@@ -35,6 +35,13 @@ describe CoolElement do
       a = subject.create(:name => 'Kraj Żelaza')
       a.name.to_url.should == 'kraj-zelaza'
     end
+
+   context 'when we add some pauses in the name' do
+     it "should replace them and leave only one" do
+      a = subject.create(:name => 'Kraj - Żelaza')
+      a.name.to_url.should == 'kraj-zelaza'
+     end
+   end
   end
 
   context "when we have a class which has use_id => true" do
