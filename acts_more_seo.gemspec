@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 1.2") if s.respond_to? :required_rubygems_version=
   s.authors = ["Maciej Mensfeld"]
-  s.date = "2012-03-17"
+  s.date = "2013-01-01"
   s.description = "Gem makes your ActiveRecord models more SEO friendly. Changes URL to look way better"
   s.email = "maciej@mensfeld.pl"
   s.extra_rdoc_files = ["CHANGELOG.rdoc", "README.md", "lib/acts_more_seo.rb", "lib/generators/acts_more_seo/install_generator.rb", "lib/generators/acts_more_seo/templates/create_seo_history_migration.rb", "lib/seo_finder.rb", "lib/seo_formatter.rb", "lib/seo_history.rb", "lib/string_ext.rb"]
@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--line-numbers", "--inline-source", "--title", "Acts_more_seo", "--main", "README.md"]
   s.require_paths = ["lib"]
   s.rubyforge_project = "acts_more_seo"
-  s.rubygems_version = "1.8.15"
+  s.rubygems_version = "1.8.10"
   s.summary = "Gem makes your ActiveRecord models more SEO friendly. Changes URL to look way better"
 
   if s.respond_to? :specification_version then
