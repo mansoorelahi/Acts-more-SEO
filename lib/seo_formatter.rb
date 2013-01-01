@@ -39,13 +39,13 @@ module Acts
         if @klass.seo_columns.is_a?(Array)
           seo_parts = @klass.seo_columns.collect do |field|
             el = @instance.send(field)
-            el.to_url if el
+            el.to_s.to_url if el
           end
           seo_parts.delete_if{|el| el.to_s.length == 0}
           @seo_path = seo_parts.join('-')
         else
           el = @instance.send(@klass.seo_columns)
-          @seo_path = el ? el.to_url : ''
+          @seo_path = el ? el.to_s.to_url : ''
         end
         @seo_path
       end

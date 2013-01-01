@@ -26,3 +26,5 @@ Backward compatibility improvements
 * Case sensitive/insensitive support
 = Version 0.4.2
 * Multiply pauses fix
+= Version 0.4.3
+* Casting non-string types to string before creating url

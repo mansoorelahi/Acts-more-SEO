@@ -26,6 +26,10 @@ class HistorableElement < ActiveRecord::Base
       :case_sensitive => true
 end
 
+class IntegerElement < ActiveRecord::Base
+  acts_more_seo :columns => [:name]
+end
+
 describe CoolElement do
   subject { CoolElement }
   before(:each){ subject.destroy_all }
@@ -293,3 +297,14 @@ describe HistorableElement do
 
 end
 
+describe IntegerElement do
+  subject { IntegerElement }
+  before(:each){ subject.destroy_all }
+
+  context "when we have integer field" do
+    it "should cast it to string before saving" do
+      a = subject.create(:name => 1234)
+      a.name.to_s.to_url.should == '1234'
+    end
+  end
+end
