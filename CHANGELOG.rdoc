@@ -28,3 +28,5 @@ Backward compatibility improvements
 * Multiply pauses fix
 = Version 0.4.3
 * Casting non-string types to string before creating url
+= Version 1.0.0
+= Rails 4 support (no backward compatibility)

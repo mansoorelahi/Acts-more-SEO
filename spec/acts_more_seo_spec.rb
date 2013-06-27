@@ -4,26 +4,26 @@ require 'spec_helper'
 ROOT = File.expand_path(File.dirname(__FILE__))
 
 class CoolElement < ActiveRecord::Base
-    acts_more_seo
+  acts_more_seo
 end
 
 class CoolerElement < ActiveRecord::Base
-    acts_more_seo :title
+  acts_more_seo :title
 end
 
 class SpecialElement < ActiveRecord::Base
-    acts_more_seo :columns => [:name, :surname, :title]
+  acts_more_seo :columns => [:name, :surname, :title]
 end
 
 class BestElement < ActiveRecord::Base
-    acts_more_seo :columns => [:name, :surname, :title], :use_id => false
+  acts_more_seo :columns => [:name, :surname, :title], :use_id => false
 end
 
 class HistorableElement < ActiveRecord::Base
-    acts_more_seo :columns => :name, 
-      :use_id => false, 
-      :history => true,
-      :case_sensitive => true
+  acts_more_seo :columns => :name,
+    :use_id => false,
+    :history => true,
+    :case_sensitive => true
 end
 
 class IntegerElement < ActiveRecord::Base
@@ -40,12 +40,12 @@ describe CoolElement do
       a.name.to_url.should == 'kraj-zelaza'
     end
 
-   context 'when we add some pauses in the name' do
-     it "should replace them and leave only one" do
-      a = subject.create(:name => 'Kraj - Żelaza')
-      a.name.to_url.should == 'kraj-zelaza'
-     end
-   end
+    context 'when we add some pauses in the name' do
+      it "should replace them and leave only one" do
+        a = subject.create(:name => 'Kraj - Żelaza')
+        a.name.to_url.should == 'kraj-zelaza'
+      end
+    end
   end
 
   context "when we have a class which has use_id => true" do
@@ -100,7 +100,7 @@ describe CoolerElement do
 
     it "should raise error when there is no element" do
       a = subject.create
-     lambda { subject.find_by_seo!(a.id+1) }.should raise_error(ActiveRecord::RecordNotFound)
+      lambda { subject.find_by_seo!(a.id+1) }.should raise_error(ActiveRecord::RecordNotFound)
     end
   end
 
@@ -142,8 +142,8 @@ describe SpecialElement do
 
   context "when there are all the params" do
     it "should return nice url" do
-        a = subject.create({:name => 'maciej', :surname => 'mensfeld', :title => 'test abc'})
-        a.to_param.should eql("#{a.id}-maciej-mensfeld-test-abc")
+      a = subject.create({:name => 'maciej', :surname => 'mensfeld', :title => 'test abc'})
+      a.to_param.should eql("#{a.id}-maciej-mensfeld-test-abc")
     end
   end
 end
@@ -184,10 +184,10 @@ describe BestElement do
 
   context "when there are all the params" do
     it "should return nice url" do
-        a = subject.create({:name => 'maciej', :surname => 'mensfeld', :title => 'test abc'})
-        a.seo_url.should eql("maciej-mensfeld-test-abc")
-        a.reload
-        a.seo_url.should eql("maciej-mensfeld-test-abc")
+      a = subject.create({:name => 'maciej', :surname => 'mensfeld', :title => 'test abc'})
+      a.seo_url.should eql("maciej-mensfeld-test-abc")
+      a.reload
+      a.seo_url.should eql("maciej-mensfeld-test-abc")
     end
   end
 
@@ -202,22 +202,22 @@ describe BestElement do
 
   context "when updating object" do
     it "should have refreshed seo_url" do
-        a = subject.create({:name => 'mensfeld', :title => 'test abc'})
-        a.seo_url.should eql("mensfeld-test-abc")
-        a.name = 'kowalski'
-        a.save
-        a.seo_url.should eql("kowalski-test-abc")
-        subject.find_by_seo("kowalski-test-abc").should eql(a)
+      a = subject.create({:name => 'mensfeld', :title => 'test abc'})
+      a.seo_url.should eql("mensfeld-test-abc")
+      a.name = 'kowalski'
+      a.save
+      a.seo_url.should eql("kowalski-test-abc")
+      subject.find_by_seo("kowalski-test-abc").should eql(a)
     end
   end
 
   context "when we have two objects" do
     it "should assing to the second - seo url with id" do
-        a = subject.create({:name => 'mensfeld', :title => 'test abc'})
-        b = subject.create({:name => 'mensfeld ', :title => 'test abc'})
-        a.seo_url.should eql("mensfeld-test-abc")
-        b.reload
-        b.seo_url.should eql("#{b.id}-mensfeld-test-abc")
+      a = subject.create({:name => 'mensfeld', :title => 'test abc'})
+      b = subject.create({:name => 'mensfeld ', :title => 'test abc'})
+      a.seo_url.should eql("mensfeld-test-abc")
+      b.reload
+      b.seo_url.should eql("#{b.id}-mensfeld-test-abc")
     end
 
     context "and we change name in a second one" do

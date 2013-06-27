@@ -35,9 +35,9 @@ module Acts
       # Try to find element in an instance class table
       def search_in_table(name)
         if @klass.seo_use_id
-          @klass.find_by_id(name)
+          @klass.find_by(:id => name)
         else
-          @klass.find_by_seo_url name, :first
+          @klass.find_by(:seo_url => name)
         end
       end
 
@@ -47,14 +47,14 @@ module Acts
         if @klass.seo_use_id
           @klass.find(name)
         else
-          @klass.find_by_seo_url! name, :first
+          @klass.find_by!(:seo_url => name)
         end
       end
 
       # Try to find element in its seo history
       def search_in_history(name)
         sql = 'seo_url = ? AND seo_historable_type = ?'
-        ret = Acts::MoreSeo::SeoHistory.where(sql, name, @klass.to_s).limit(1).first
+        ret = Acts::MoreSeo::SeoHistory.where(sql, name, @klass.to_s).first
         ret = ret.seo_historable if ret
         ret
       end
