@@ -30,3 +30,6 @@ Backward compatibility improvements
 * Casting non-string types to string before creating url
 = Version 1.0.0
 = Rails 4 support (no backward compatibility)
+= Version 1.0.1
+* Polish letters conversion fix
+* Removed trim and trim! methods from string

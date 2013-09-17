@@ -27,17 +27,4 @@ class String
     self.replace self.nl2br
   end
 
-  # Trim string to required length
-  def trim(length = 20, end_str = '...')
-    if self.length > length
-      return "#{self[0, length-end_str.length]}#{end_str}"
-    end
-    self
-  end
-
-  def trim!(length = 20, end_str = '...')
-    self.replace self.trim(length, end_str)
-    self
-  end
-
 end

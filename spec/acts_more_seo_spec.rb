@@ -308,3 +308,15 @@ describe IntegerElement do
     end
   end
 end
+
+describe String do
+  context 'when we convert string to url' do
+    context 'and string contains polish big letters' do
+      subject{ 'ŻółÓwio' }
+
+      it 'should convert them to downcase str letters' do
+        subject.to_url.should == 'zolowio'
+      end
+    end
+  end
+end
