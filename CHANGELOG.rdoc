@@ -36,3 +36,5 @@ Backward compatibility improvements
 = Version 1.1.0
 * Update for default to_param AR behaviour - if use_id set to false - to_param won't include it
 * Removed unused string methods
+= Version 1.1.1
+* Fix for lib/string_ext requiring
