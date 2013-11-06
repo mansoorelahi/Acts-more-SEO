@@ -1,8 +1,8 @@
 require "babosa"
-require "string_ext"
 require "seo_formatter"
 require "seo_finder"
 require "seo_history"
+require "string_ext"
 
 module Acts
   module MoreSeo
@@ -63,13 +63,14 @@ module Acts
 
       # Overwrite default to_param - should return nice url
       def to_param
-        self.to_url
+        self.seo_use_id ? self.to_url : self.to_seo
       end
 
       # Lets return nice and smooth url
       def to_url
         Acts::MoreSeo::SeoFormatter.new(self).to_url
       end
+
       # Alias
       def url
         to_url

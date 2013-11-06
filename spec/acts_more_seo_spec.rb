@@ -57,6 +57,11 @@ describe CoolElement do
       subject.find_by_seo("134534dass").should eql(nil)
       lambda { subject.find_by_seo!("134534dass") }.should raise_error(ActiveRecord::RecordNotFound)
     end
+
+    it "should have to_param with id" do
+      a = subject.create(:name => 'bla bla bla')
+      subject.find_by_seo(a.id).to_param.to_i.should eql(a.id)
+    end
   end
 
   context "when there is no name" do
@@ -178,6 +183,13 @@ describe BestElement do
         a.seo_url.should eql("#{a.id}")
         a.reload
         a.seo_url.should eql("#{a.id}")
+      end
+    end
+
+    context "when we have a class which has use_id => false" do
+      it "should not to_param with id" do
+        a = subject.create(:name => 'bla bla bla')
+        subject.find_by_seo(a.id).to_param.to_i.should eql 0
       end
     end
   end

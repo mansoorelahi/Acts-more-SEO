@@ -33,3 +33,6 @@ Backward compatibility improvements
 = Version 1.0.1
 * Polish letters conversion fix
 * Removed trim and trim! methods from string
+= Version 1.1.0
+* Update for default to_param AR behaviour - if use_id set to false - to_param won't include it
+* Removed unused string methods
