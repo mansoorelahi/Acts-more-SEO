@@ -63,7 +63,7 @@ module Acts
 
       # Overwrite default to_param - should return nice url
       def to_param
-        self.seo_use_id ? self.to_url : self.to_seo
+        self.seo_use_id ? self.to_url : self.seo_url
       end
 
       # Lets return nice and smooth url
@@ -87,10 +87,13 @@ module Acts
 
           # Add old url to history if its different from the new one
           if self.class.seo_history? && (new_url != self.seo_url)
-            self.seo_histories.create(:seo_url => self.seo_url)
+            self.seo_histories.create(seo_url: self.seo_url)
           end
 
-          self.update_column(:seo_url, new_url)
+          # And update with new seo_url if it is different than previous
+          if (new_url != self.seo_url)
+            self.seo_url =  new_url
+          end
         end
       end
 

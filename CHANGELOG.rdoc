@@ -38,3 +38,9 @@ Backward compatibility improvements
 * Removed unused string methods
 = Version 1.1.1
 * Fix for lib/string_ext requiring
+= Version 1.1.2
+* Performance fix: don't updare resource when seo_url is the same
+= Version 1.1.3
+* More performance tweaks (set attribute instead of update of before_update)
+= Version 1.1.4
+* to_param fix for use_id = false case
